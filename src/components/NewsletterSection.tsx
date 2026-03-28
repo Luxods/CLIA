@@ -5,34 +5,18 @@ const NewsletterSection = () => {
         className="px-8 md:px-16 w-full flex flex-col items-center justify-center relative overflow-hidden"
         style={{ minHeight: "110vh" }}
       >
-        {/* Glow orb */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: "600px",
-            height: "600px",
-            background:
-              "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-  
         {/* Heading */}
-        <div className="text-center mb-8 max-w-3xl">
+        <div className="text-center mb-8 max-w-4xl">
           <h2
-            className="font-bold leading-[1.1] mb-6 text-white/60"
+            className="font-bold font-display leading-[1.1] mb-6 text-white/60"
             style={{
-              fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
               letterSpacing: "-0.02em",
             }}
           >
             Soyez informé en premier
             <br />
-            du
-            <span className="italic text-white"> prochain hackathon</span>
+            du <span className="italic text-white">prochain hackathon</span>
           </h2>
         </div>
   
