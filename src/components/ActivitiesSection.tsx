@@ -17,7 +17,7 @@ const ActivitiesSection = () => {
 
       <div className="grid md:grid-cols-2 gap-6">
         {activities.map(({ icon: Icon, title, desc }) => (
-          <div key={title} className="glass-card rounded-2xl p-8 group hover:border-accent/30 transition-colors">
+          <div key={title} className="glass-card rounded-2xl p-8 group hover:border-white/30 transition-colors">
             <Icon className="w-8 h-8 text-[whitesmoke] mb-5" />
             <h3 className="font-display text-xl font-semibold mb-3">{title}</h3>
             <p className="text-muted-foreground leading-relaxed">{desc}</p>
