@@ -6,6 +6,7 @@ import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import NewsletterSection from "@/components/NewsletterSection";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <ActivitiesSection />
       <AboutSection />
       <ContactSection />
+      <NewsletterSection />
       <Footer />
     </div>
   );
