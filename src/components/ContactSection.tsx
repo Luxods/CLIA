@@ -2,7 +2,7 @@ import { ArrowRight, Mail, MapPin } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 px-8 md:px-16">
+    <section id="contact" className="py-24 px-8 md:px-16 mt-24">
       <p className="text-[whitesmoke] text-xs font-medium tracking-[0.2em] uppercase mb-6">Contact</p>
       <div className="grid md:grid-cols-2 gap-16">
         <div>

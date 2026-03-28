@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="rounded-full px-10 py-4 hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2"
         style={{
           background: 'rgba(20, 35, 60, 0.35)',
-          backdropFilter: 'blur(20px)',
+          backdropFilter: 'blur(5px)',
           WebkitBackdropFilter: 'blur(20px)',
         }}
       >

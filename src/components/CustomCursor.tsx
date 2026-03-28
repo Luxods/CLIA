@@ -56,10 +56,10 @@ const CustomCursor = () => {
         width: 24,
         height: 24,
         borderRadius: "50%",
-        background: "rgba(241, 241, 241, 0.05)",
+        background: "rgba(157, 193, 242, 0.05)",
         backdropFilter: "blur(40px)",
         WebkitBackdropFilter: "blur(8px)",
-        border: "1px solid rgba(255, 255, 255, 0.5)",
+        border: "1px solid #182230",
       }}
     />
   );
