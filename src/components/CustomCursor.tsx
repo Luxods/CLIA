@@ -53,8 +53,8 @@ const CustomCursor = () => {
       ref={cursorRef}
       className="fixed top-0 left-0 z-[9999] pointer-events-none"
       style={{
-        width: 24,
-        height: 24,
+        width: 17,
+        height: 17,
         borderRadius: "50%",
         background: "rgba(157, 193, 242, 0.05)",
         backdropFilter: "blur(40px)",
