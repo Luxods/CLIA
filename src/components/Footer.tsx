@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logoCLIA from "@/assets/logoCLIA.jpg";
 
 const Footer = () => {
@@ -14,23 +15,29 @@ const Footer = () => {
         }}
       >
         <div className="px-10 md:px-20 py-12 flex flex-col md:flex-row items-stretch justify-between gap-10">
-          <a href="#" className="flex items-start gap-2 shrink-0">
+          <Link to="/" className="flex items-start gap-2 shrink-0">
             <img
               src={logoCLIA}
               alt="Centrale Lyon IA"
               className="h-[75%] w-auto rounded"
             />
-          </a>
+          </Link>
 
           <div className="flex gap-16 md:gap-24">
             <div className="flex flex-col gap-3">
               <span className="text-white text-sm font-semibold tracking-widest uppercase mb-1">
                 Découvrir
               </span>
-              {["Accueil", "À Propos", "Activités", "Projets"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
+              {[
+                { label: "Accueil", to: "/" },
+                { label: "Galerie", to: "/galerie" },
+                { label: "À Propos", to: "/#à-propos" },
+                { label: "Activités", to: "/#activités" },
+                { label: "Projets", to: "/#projets" },
+              ].map(({ label, to }) => (
+                <Link
+                  key={label}
+                  to={to}
                   className="text-sm transition-colors duration-200"
                   style={{ color: "rgba(200, 210, 225, 0.55)" }}
                   onMouseEnter={(e) =>
@@ -40,8 +47,8 @@ const Footer = () => {
                     ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(200, 210, 225, 0.55)")
                   }
                 >
-                  {item}
-                </a>
+                  {label}
+                </Link>
               ))}
             </div>
 

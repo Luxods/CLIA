@@ -12,7 +12,7 @@ const partners = [
 
 const PartnersSection = () => {
   return (
-    <section className="relative py-24 px-8 md:px-16">
+    <section id="projets" className="relative py-24 px-8 md:px-16">
       <p className="text-[whitesmoke] text-xs font-medium tracking-[0.2em] uppercase mb-6">Partenaires</p>
       <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold max-w-lg leading-tight mb-16">
         Soutenu par des leaders académiques et industriels.
