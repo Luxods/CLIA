@@ -92,13 +92,12 @@ const Gallery = () => {
           <h1
             className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white"
           >
-            Unboxed —{" "}
-            <span className="italic text-white/80">1er hackathon</span>
+            Unboxed Hackaton —{" "}
+            <span className="italic text-white/80">mars 2025</span>
           </h1>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl">
-            Retour en images sur la première édition d&apos;Unboxed, le hackathon
-            organisé par Centrale Lyon IA. Faites défiler la grille et cliquez sur
-            une photo pour l&apos;agrandir.
+            Retour en images sur le premier hackathon organisé par Centrale Lyon IA.
+            Faites défiler la grille et cliquez sur une photo pour l&apos;agrandir.
           </p>
         </div>
 

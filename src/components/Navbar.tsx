@@ -12,7 +12,7 @@ const navLinks: { label: string; to: string }[] = [
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-12 md:px-20 pt-[20px] pb-3 md:pb-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 pt-[20px] pb-3 md:pb-4">
       <Link to="/" className="flex items-center gap-2">
         <img src={logoCLIA} alt="Centrale Lyon IA" className="h-16 w-auto rounded" />
       </Link>
