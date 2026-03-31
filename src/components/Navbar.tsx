@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import logoCLIA from "@/assets/logoCLIA.jpg";
+import { useHomeLogoClick } from "@/hooks/use-home-logo-click";
 
 const navLinks: { label: string; to: string }[] = [
-  { label: "Activités", to: "/#activités" },
-  { label: "Projets", to: "/#projets" },
+  { label: "Hackathon", to: "/#hackathon" },
+  { label: "Projets", to: "/#activités" },
   { label: "Galerie", to: "/galerie" },
   { label: "À Propos", to: "/#à-propos" },
-  { label: "Contact", to: "/#contact" },
 ];
 
 const Navbar = () => {
+  const onLogoClick = useHomeLogoClick();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 pt-[20px] pb-3 md:pb-4">
-      <Link to="/" className="flex items-center gap-2">
+      <Link to="/" onClick={onLogoClick} className="flex items-center gap-2">
         <img src={logoCLIA} alt="Centrale Lyon IA" className="h-16 w-auto rounded" />
       </Link>
 
@@ -39,7 +41,7 @@ const Navbar = () => {
         to="/#contact"
         className="rounded-lg px-6 py-3 text-sm font-medium flex items-center gap-3 font-body transition-all hover:shadow-lg bg-primary text-primary-foreground hover:opacity-90"
       >
-        Rejoignez-nous
+        Contactez-nous
         <span className="bg-black text-white rounded-full w-6 h-6 flex items-center justify-center">
           <ChevronRight className="w-3.5 h-3.5" />
         </span>

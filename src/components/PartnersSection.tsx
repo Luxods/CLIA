@@ -12,10 +12,10 @@ const partners = [
 
 const PartnersSection = () => {
   return (
-    <section id="projets" className="relative py-24 px-8 md:px-16">
+    <section id="partenaires" className="relative py-24 px-8 md:px-16 scroll-mt-28">
       <p className="text-[whitesmoke] text-xs font-medium tracking-[0.2em] uppercase mb-6">Partenaires</p>
-      <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold max-w-lg leading-tight mb-16">
-        Soutenu par des leaders académiques et industriels.
+      <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold max-w-2xl leading-tight mb-16">
+        Ils nous ont accompagnés sur l'hackaton Unboxed.
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

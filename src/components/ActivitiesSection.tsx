@@ -12,7 +12,7 @@ const ActivitiesSection = () => {
     <section id="activités" className="py-24 px-8 md:px-16">
       <p className="text-[whitesmoke] text-xs font-medium tracking-[0.2em] uppercase mb-6">Activités</p>
       <h2 className="font-display text-4xl md:text-5xl font-bold max-w-2xl leading-tight mb-16">
-        Explorez l'IA sous toutes ses formes.
+        Formations, hackathons, conférences : la vie du club.
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">

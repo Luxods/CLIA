@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import logoCLIA from "@/assets/logoCLIA.jpg";
+import { useHomeLogoClick } from "@/hooks/use-home-logo-click";
 
 const Footer = () => {
+  const onLogoClick = useHomeLogoClick();
+
   return (
     <footer className="relative w-full">
       <div
@@ -15,7 +18,7 @@ const Footer = () => {
         }}
       >
         <div className="px-10 md:px-20 py-12 flex flex-col md:flex-row items-stretch justify-between gap-10">
-          <Link to="/" className="flex items-start gap-2 shrink-0">
+          <Link to="/" onClick={onLogoClick} className="flex items-start gap-2 shrink-0">
             <img
               src={logoCLIA}
               alt="Centrale Lyon IA"
@@ -29,11 +32,10 @@ const Footer = () => {
                 Découvrir
               </span>
               {[
-                { label: "Accueil", to: "/" },
+                { label: "Hackathon", to: "/#hackathon" },
+                { label: "Projets", to: "/#projets" },
                 { label: "Galerie", to: "/galerie" },
                 { label: "À Propos", to: "/#à-propos" },
-                { label: "Activités", to: "/#activités" },
-                { label: "Projets", to: "/#projets" },
               ].map(({ label, to }) => (
                 <Link
                   key={label}
@@ -56,7 +58,7 @@ const Footer = () => {
               <span className="text-white text-sm font-semibold tracking-widest uppercase mb-1">
                 Réseaux Sociaux
               </span>
-              {["Instagram", "LinkedIn"].map((item) => (
+              {["LinkedIn", "Instagram"].map((item) => (
                 <a
                   key={item}
                   href="#"

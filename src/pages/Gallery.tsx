@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import NewsletterSection from "@/components/NewsletterSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { unboxedPhotoUrls } from "@/data/unboxedGallery";
 import {
@@ -144,6 +145,7 @@ const Gallery = () => {
           </div>
         )}
       </main>
+      <NewsletterSection />
       <Footer />
 
       <Dialog

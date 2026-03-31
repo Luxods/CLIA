@@ -7,7 +7,7 @@ const NewsletterSection = () => {
     <section
       id="newsletter"
       className="px-8 md:px-16 w-full flex flex-col items-center justify-center relative overflow-hidden"
-      style={{ minHeight: "110vh" }}
+      style={{ minHeight: "105vh" }}
     >
       {/* Heading */}
       <div className="text-center mb-8 max-w-4xl">
@@ -18,7 +18,7 @@ const NewsletterSection = () => {
             letterSpacing: "-0.02em",
           }}
         >
-          Soyez informé en premier
+          Sois informé en premier
           <br />
           du <span className="italic text-white">prochain hackathon</span>
         </h2>
@@ -40,7 +40,7 @@ const NewsletterSection = () => {
         >
           <input
             type="email"
-            placeholder="votre@email.com"
+            placeholder="exemple@email.com"
             className="flex-1 bg-transparent px-6 py-4 text-sm text-white placeholder:text-white/25 focus:outline-none"
             style={{
               fontFamily: "'DM Mono', monospace",
