@@ -9,6 +9,7 @@ const navLinks: { label: string; to: string }[] = [
   { label: "Projets", to: "/#projets" },
   { label: "Équipe", to: "/#équipe" },
   { label: "Galerie", to: "/galerie" },
+  { label: "Test", to: "/test" },
 ];
 
 const Navbar = () => {

@@ -34,7 +34,7 @@ const AboutSection = () => {
             className="inline-flex items-center gap-2 text-sm font-medium text-blue-950 hover:text-blue-800 transition-colors group"
           >
             <Users className="w-4 h-4 opacity-80" aria-hidden />
-            Rencontrer notre équipe
+            Découvrir notre équipe
             <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
