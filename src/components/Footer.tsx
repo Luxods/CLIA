@@ -33,9 +33,10 @@ const Footer = () => {
               </span>
               {[
                 { label: "Hackathon", to: "/#hackathon" },
-                { label: "Projets", to: "/#projets" },
-                { label: "Galerie", to: "/galerie" },
                 { label: "À Propos", to: "/#à-propos" },
+                { label: "Projets", to: "/#projets" },
+                { label: "Équipe", to: "/#équipe" },
+                { label: "Galerie", to: "/galerie" },
               ].map(({ label, to }) => (
                 <Link
                   key={label}
