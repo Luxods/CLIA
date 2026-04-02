@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { ChevronRight, Users } from "lucide-react";
+
 const AboutSection = () => {
   return (
     <section
@@ -26,20 +29,14 @@ const AboutSection = () => {
             conférences et sessions d'entrainements, et développons des projets
             R&D pour que l'IA puisse contribuer à la vie du campus.
           </p>
-          <div className="grid grid-cols-3 gap-8 pt-6">
-            <div>
-              <p className="font-display text-3xl font-bold text-blue-950">80+</p>
-              <p className="text-sm mt-1 text-slate-600">Membres actifs</p>
-            </div>
-            <div>
-              <p className="font-display text-3xl font-bold text-blue-950">15+</p>
-              <p className="text-sm mt-1 text-slate-600">Événements/an</p>
-            </div>
-            <div>
-              <p className="font-display text-3xl font-bold text-blue-950">10+</p>
-              <p className="text-sm mt-1 text-slate-600">Projets réalisés</p>
-            </div>
-          </div>
+          <Link
+            to="/#équipe"
+            className="inline-flex items-center gap-2 text-sm font-medium text-blue-950 hover:text-blue-800 transition-colors group"
+          >
+            <Users className="w-4 h-4 opacity-80" aria-hidden />
+            Rencontrer notre équipe
+            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </section>

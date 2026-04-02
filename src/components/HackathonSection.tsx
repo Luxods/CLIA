@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Images } from "lucide-react";
+import { ExternalLink, Images, Rocket } from "lucide-react";
 import {
   unboxedFeaturedAccentUrl,
   unboxedFeaturedWideUrl,
 } from "@/data/unboxedGallery";
+
+/** Billetterie, Luma, réseau social, article… (à adapter) */
+const HACKATHON_MORE_INFO_URL = "#";
 
 const HackathonSection = () => {
   const wideSrc = unboxedFeaturedWideUrl;
@@ -30,14 +33,26 @@ const HackathonSection = () => {
             et radiologues dans leurs métiers, encadrés par des mentors experts du secteur
             de la santé et de l'IA agentique.
           </p>
-          <Link
-            to="/galerie"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/85 transition-colors group"
-          >
-            <Images className="w-4 h-4 opacity-80" aria-hidden />
-            Voir toute la galerie
-            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+          <div className="flex flex-col gap-3">
+            <a
+              href={HACKATHON_MORE_INFO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/85 transition-colors group"
+            >
+              <Rocket className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
+              En savoir plus sur nos hackathons
+              <ExternalLink className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
+            </a>
+            <Link
+              to="/galerie"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/85 transition-colors group"
+            >
+              <Images className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
+              Voir toute la galerie
+              <ExternalLink className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
+            </Link>
+          </div>
         </div>
 
         {/* Image 10 : ambiance / détail à côté du texte (desktop), calée à droite de la colonne */}
