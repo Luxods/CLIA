@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoCLIA from "@/assets/logoCLIA.jpg";
+import logoCLIA from "@/assets/logo/logoCLIA.jpg";
 import { useHomeLogoClick } from "@/hooks/use-home-logo-click";
 
 const Footer = () => {
@@ -36,7 +36,6 @@ const Footer = () => {
                 { label: "À Propos", to: "/#à-propos" },
                 { label: "Projets", to: "/#projets" },
                 { label: "Équipe", to: "/#équipe" },
-                { label: "Galerie", to: "/galerie" },
               ].map(({ label, to }) => (
                 <Link
                   key={label}

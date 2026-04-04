@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, MapPin } from "lucide-react";
 
 const glassInputStyle = {
   border: "1px solid rgba(255,255,255,0.1)",
@@ -17,6 +17,14 @@ const glassInputFocusStyle = {
   border: "1px solid rgba(255,255,255,0.7)",
 };
 
+const CONTACT_EMAIL = "contact@centralelyon-ia.fr";
+const LINKEDIN_HREF = "https://www.linkedin.com/company/centrale-lyon-ia/";
+const VENUE_LABEL = "École Centrale de Lyon, Écully";
+const MAPS_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(VENUE_LABEL)}`;
+
+const contactRowLinkClass =
+  "inline-flex items-center gap-3 rounded-md py-1 px-2 -my-1 transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25";
+
 const ContactSection = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
@@ -28,15 +36,24 @@ const ContactSection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight mb-8">
             Envie de construire quelque chose avec nous ?
           </h2>
-          <div className="space-y-4 text-muted-foreground">
-            <div className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-[whitesmoke]" />
-              <span>contact@centralelyon-ia.fr</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-[whitesmoke]" />
-              <span>École Centrale de Lyon, Écully</span>
-            </div>
+          <div className="flex flex-col items-start gap-4 text-muted-foreground">
+            <a href={`mailto:${CONTACT_EMAIL}`} className={contactRowLinkClass}>
+              <Mail className="w-5 h-5 text-[whitesmoke] shrink-0" aria-hidden />
+              <span>{CONTACT_EMAIL}</span>
+            </a>
+            <a
+              href={LINKEDIN_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={contactRowLinkClass}
+            >
+              <Linkedin className="w-5 h-5 text-[whitesmoke] shrink-0" aria-hidden />
+              <span>Centrale Lyon IA sur LinkedIn</span>
+            </a>
+            <a href={MAPS_HREF} target="_blank" rel="noopener noreferrer" className={contactRowLinkClass}>
+              <MapPin className="w-5 h-5 text-[whitesmoke] shrink-0" aria-hidden />
+              <span>{VENUE_LABEL}</span>
+            </a>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
-import logoGE from "@/assets/logo-ge-healthcare-segmented.png";
-import logoMistral from "@/assets/logo-mistral.png";
-import logoLovable from "@/assets/logo-lovable.png";
-import logoCLC from "@/assets/logo-clc-segmented.png";
+import logoGE from "@/assets/logo/logo-ge-healthcare-segmented.png";
+import logoMistral from "@/assets/logo/logo-mistral.png";
+import logoLovable from "@/assets/logo/logo-lovable.png";
+import logoCLC from "@/assets/logo/logo-clc-segmented.png";
 
 const partners = [
   { name: "GE HealthCare", logo: logoGE, url: "https://www.gehealthcare.com/", className: "max-h-10 md:max-h-12" },

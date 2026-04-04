@@ -1,16 +1,14 @@
-import { Link } from "react-router-dom";
 import { ExternalLink, Images, Rocket } from "lucide-react";
-import {
-  unboxedFeaturedAccentUrl,
-  unboxedFeaturedWideUrl,
-} from "@/data/unboxedGallery";
+import wideSrc from "@/assets/01.jpg";
+import accentSrc from "@/assets/10.jpg";
 
 /** Billetterie, Luma, réseau social, article… (à adapter) */
 const HACKATHON_MORE_INFO_URL = "#";
 
+/** Page galerie (placeholder) */
+const HACKATHON_GALLERY_URL = "#";
+
 const HackathonSection = () => {
-  const wideSrc = unboxedFeaturedWideUrl;
-  const accentSrc = unboxedFeaturedAccentUrl;
 
   return (
     <section
@@ -44,70 +42,43 @@ const HackathonSection = () => {
               En savoir plus sur nos hackathons
               <ExternalLink className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
             </a>
-            <Link
-              to="/galerie"
+            <a
+              href={HACKATHON_GALLERY_URL}
               className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/85 transition-colors group"
             >
               <Images className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
               Voir toute la galerie
-              <ExternalLink className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
-            </Link>
+              <ExternalLink
+                className="w-4 h-4 opacity-80 shrink-0"
+                aria-hidden
+              />
+            </a>
           </div>
         </div>
 
         {/* Image 10 : ambiance / détail à côté du texte (desktop), calée à droite de la colonne */}
         <div className="lg:col-span-7 flex lg:justify-end">
-          {accentSrc ? (
-            <div className="relative overflow-hidden rounded-2xl glass-card aspect-[4/3] lg:aspect-[16/10] lg:max-h-[min(420px,50vh)] w-full lg:w-[min(100%,48rem)]">
-              <img
-                src={accentSrc}
-                alt="Unboxed — moment du hackathon"
-                className="absolute inset-0 h-full w-full object-cover object-[56%_15%]"
-                loading="lazy"
-              />
-            </div>
-          ) : (
-            <div
-              className="rounded-2xl border border-white/10 bg-white/[0.03] aspect-[4/3] lg:aspect-[16/10] lg:max-h-[min(420px,50vh)] w-full lg:w-[min(100%,48rem)] flex items-center justify-center p-8"
-              aria-hidden
-            >
-              <p className="text-center text-sm text-muted-foreground max-w-xs">
-                Ajoutez{" "}
-                <span className="font-mono text-xs text-white/60">10.jpg</span>{" "}
-                dans{" "}
-                <span className="font-mono text-xs text-white/60">
-                  src/assets/gallery/unboxed/
-                </span>{" "}
-                pour l&apos;aperçu ici.
-              </p>
-            </div>
-          )}
+          <div className="relative overflow-hidden rounded-2xl glass-card aspect-[4/3] lg:aspect-[16/10] lg:max-h-[min(420px,50vh)] w-full lg:w-[min(100%,48rem)]">
+            <img
+              src={accentSrc}
+              alt="Unboxed — moment du hackathon"
+              className="absolute inset-0 h-full w-full object-cover object-[56%_15%]"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
 
       {/* Image 01 : bandeau large, ambiance générale */}
       <div className="max-w-7xl mx-auto">
-        {wideSrc ? (
-          <div className="relative overflow-hidden rounded-2xl glass-card aspect-[21/9] sm:aspect-[3/1] min-h-[160px] sm:min-h-[200px]">
-            <img
-              src={wideSrc}
-              alt="Unboxed — vue d&apos;ensemble du hackathon"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              loading="lazy"
-            />
-          </div>
-        ) : (
-          <div
-            className="rounded-2xl border border-white/10 bg-white/[0.03] aspect-[21/9] min-h-[160px] flex items-center justify-center p-6"
-            aria-hidden
-          >
-            <p className="text-center text-sm text-muted-foreground max-w-md">
-              Ajoutez{" "}
-              <span className="font-mono text-xs text-white/60">01.jpg</span>{" "}
-              dans le même dossier pour la bannière panoramique.
-            </p>
-          </div>
-        )}
+        <div className="relative overflow-hidden rounded-2xl glass-card aspect-[21/9] sm:aspect-[3/1] min-h-[160px] sm:min-h-[200px]">
+          <img
+            src={wideSrc}
+            alt="Unboxed — vue d&apos;ensemble du hackathon"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
       </div>
     </section>
   );

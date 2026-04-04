@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import logoCLIA from "@/assets/logoCLIA.jpg";
+import logoCLIA from "@/assets/logo/logoCLIA.jpg";
 import { useHomeLogoClick } from "@/hooks/use-home-logo-click";
 
 const navLinks: { label: string; to: string }[] = [
@@ -8,8 +8,6 @@ const navLinks: { label: string; to: string }[] = [
   { label: "À Propos", to: "/#à-propos" },
   { label: "Projets", to: "/#projets" },
   { label: "Équipe", to: "/#équipe" },
-  { label: "Galerie", to: "/galerie" },
-  { label: "Test", to: "/test" },
 ];
 
 const Navbar = () => {
