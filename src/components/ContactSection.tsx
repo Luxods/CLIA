@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ArrowRight, Linkedin, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Linkedin, Loader2, Mail, MapPin } from "lucide-react";
+import { toast } from "@/components/ui/sonner";
 
 const glassInputStyle = {
   border: "1px solid rgba(255,255,255,0.1)",
@@ -27,6 +28,44 @@ const contactRowLinkClass =
 
 const ContactSection = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const name = String(fd.get("name") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const message = String(fd.get("message") ?? "").trim();
+    if (!name || !email || !message) {
+      toast.error("Merci de remplir tous les champs.");
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        if (data.error === "contact_not_configured") {
+          toast.error("Le formulaire de contact n’est pas encore configuré côté serveur.");
+        } else {
+          toast.error("Envoi impossible pour le moment. Réessayez plus tard ou écrivez-nous par email.");
+        }
+        return;
+      }
+      toast.success("Message envoyé. Nous vous répondrons dès que possible.");
+      form.reset();
+    } catch {
+      toast.error("Erreur réseau. Vérifiez votre connexion ou contactez-nous par email.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 px-8 md:px-16 mt-24">
@@ -57,7 +96,7 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
@@ -90,7 +129,8 @@ const ContactSection = () => {
           />
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-[10px] text-sm font-medium transition-all duration-300"
+            disabled={sending}
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-[10px] text-sm font-medium transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none"
             style={{
               fontFamily: "'DM Mono', monospace",
               letterSpacing: "0.05em",
@@ -99,6 +139,7 @@ const ContactSection = () => {
               boxShadow: "0 4px 20px rgba(255,255,255,0.15)",
             }}
             onMouseEnter={(e) => {
+              if (sending) return;
               e.currentTarget.style.background = "rgba(230,230,230,1)";
               e.currentTarget.style.boxShadow = "0 4px 30px rgba(255,255,255,0.25)";
             }}
@@ -107,8 +148,17 @@ const ContactSection = () => {
               e.currentTarget.style.boxShadow = "0 4px 20px rgba(255,255,255,0.15)";
             }}
           >
-            Envoyer
-            <ArrowRight className="w-4 h-4" />
+            {sending ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
+                Envoi…
+              </>
+            ) : (
+              <>
+                Envoyer
+                <ArrowRight className="w-4 h-4" aria-hidden />
+              </>
+            )}
           </button>
         </form>
       </div>
