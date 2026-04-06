@@ -86,20 +86,6 @@ const Footer = () => {
           }}
         >
           <span>© 2026 Centrale Lyon IA. Tous droits réservés.</span>
-          
-          <a
-            href="mailto:contact@centralelyon-ia.fr"
-            className="transition-colors duration-200"
-            style={{ color: "rgba(200, 210, 225, 0.4)" }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.8)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(200, 210, 225, 0.4)")
-            }
-          >
-            contact@centralelyon-ia.fr
-          </a>
         </div>
       </div>
     </footer>

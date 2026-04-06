@@ -9,16 +9,20 @@ type TeamMember = {
 };
 
 const teamMembers: TeamMember[] = [
-  { firstName: "Thomas", lastName: "Pesquet", role: "Président", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Vice-président", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Chef d'état major", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Amiral", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Capitaine", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Colonnel", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Lieutenant", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Adjudant", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Soldat", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
-  { firstName: "Thomas", lastName: "Pesquet", role: "Mousse", linkedIn: "https://www.linkedin.com/in/thomas-pesquet/" },
+  { firstName: "Alexandre", lastName: "Ansart", role: "Président", linkedIn: "https://www.linkedin.com/in/alexandre-ansart/" },
+  { firstName: "Florian", lastName: "Dougnon", role: "Vice-président", linkedIn: "https://www.linkedin.com/in/florian-dougnon-greder-326421306/" },
+  { firstName: "Bastian", lastName: "Paoli", role: "Trésorier", linkedIn: "https://www.linkedin.com/in/bastian-paoli-99b75b321/" },
+  { firstName: "Louis", lastName: "Pagès", role: "R&D", linkedIn: "https://www.linkedin.com/in/louis-pag%C3%A8s-85b100394/" },
+  { firstName: "Balthazar", lastName: "Buclon", role: "R&D", linkedIn: "https://www.linkedin.com/in/balthazar-buclon/" },
+  { firstName: "Enzo", lastName: "Ducros", role: "Hackathon", linkedIn: "https://www.linkedin.com/in/enzo-ducros-69994632b/" },
+  { firstName: "Théo", lastName: "Monferrini", role: "Conférences", linkedIn: "https://www.linkedin.com/in/th%C3%A9o-monferrini-7ba57a2a6/" },
+  { firstName: "Alexandre", lastName: "Thiébaut-Georges", role: "Stages", linkedIn: "https://www.linkedin.com/in/alexandre-thi%C3%A9baut-george/" },
+  { firstName: "Romain", lastName: "Joly", role: "Stages", linkedIn: "https://www.linkedin.com/in/romain-joly-687126381/" },
+  { firstName: "Timéo", lastName: "Larrède", role: "Kaggle", linkedIn: "https://www.linkedin.com/in/tim%C3%A9o-larr%C3%A8de-b089b4376/" },
+  { firstName: "Martin", lastName: "Mahérault", role: "R&D", linkedIn: "https://www.linkedin.com/in/martin-mah%C3%A9rault-8081793b3/" },
+  { firstName: "Nolann", lastName: "Vignard", role: "Communication", linkedIn: "https://www.linkedin.com/in/nolann-vignard-8789a33a5/" },
+  { firstName: "Ilyess", lastName: "Mejri", role: "R&D", linkedIn: "https://www.linkedin.com/" },
+  { firstName: "Naël", lastName: "El Hamidi", role: "Communication", linkedIn: "https://www.linkedin.com/in/na%C3%ABl-el-hamidi-5a472229a/" },
 ];
 
 const TeamSection = () => {
@@ -36,7 +40,7 @@ const TeamSection = () => {
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12">
         {teamMembers.map((member) => (
-          <article key={member.role} className="flex flex-col">
+          <article key={`${member.firstName}-${member.lastName}`} className="flex flex-col">
             <a
               href={member.linkedIn}
               target="_blank"

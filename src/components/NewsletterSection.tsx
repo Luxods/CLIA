@@ -26,7 +26,7 @@ const NewsletterSection = () => {
 
       {/* Form */}
       <div className="w-full flex justify-center">
-        <div
+        <form
           className="relative flex flex-col md:flex-row items-stretch gap-0 w-full max-w-lg"
           style={{
             border: `1px solid rgba(255,255,255,${isFocused ? 0.7 : 0.1})`,
@@ -37,9 +37,12 @@ const NewsletterSection = () => {
               "0 0 0 1px rgba(255,255,255,0.05), 0 24px 48px rgba(0,0,0,0.3)",
             transition: "border-color 0.4s ease",
           }}
+          onSubmit={(e) => e.preventDefault()}
         >
           <input
             type="email"
+            name="newsletter-email"
+            required
             placeholder="exemple@email.com"
             className="flex-1 bg-transparent px-6 py-4 text-sm text-white placeholder:text-white/25 focus:outline-none"
             style={{
@@ -51,7 +54,7 @@ const NewsletterSection = () => {
           />
           <div className="hidden md:block w-px self-stretch bg-white/10 my-3" />
           <button
-            type="button"
+            type="submit"
             className="m-1.5 px-7 py-3 rounded-[10px] text-sm font-medium transition-all duration-300"
             style={{
               fontFamily: "'DM Mono', monospace",
@@ -73,7 +76,7 @@ const NewsletterSection = () => {
           >
             Valider →
           </button>
-        </div>
+        </form>
       </div>
 
       {/* Bottom note */}

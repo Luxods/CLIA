@@ -60,6 +60,8 @@ const ContactSection = () => {
         <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
+            name="name"
+            required
             placeholder="Votre prénom et nom"
             className="w-full bg-transparent px-6 py-4 text-sm text-white placeholder:text-white/25 focus:outline-none"
             style={focusedField === "name" ? glassInputFocusStyle : glassInputStyle}
@@ -68,6 +70,8 @@ const ContactSection = () => {
           />
           <input
             type="email"
+            name="email"
+            required
             placeholder="Votre email"
             className="w-full bg-transparent px-6 py-4 text-sm text-white placeholder:text-white/25 focus:outline-none"
             style={focusedField === "email" ? glassInputFocusStyle : glassInputStyle}
@@ -75,6 +79,8 @@ const ContactSection = () => {
             onBlur={() => setFocusedField(null)}
           />
           <textarea
+            name="message"
+            required
             rows={6}
             placeholder="Votre message"
             className="w-full bg-transparent px-6 py-4 text-sm text-white placeholder:text-white/25 focus:outline-none resize-none"

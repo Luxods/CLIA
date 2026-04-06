@@ -25,7 +25,7 @@ const AboutSection = () => {
             de l'école et créer des ponts entre le monde académique et l'industrie.
           </p>
           <p>
-            Avec 10 membres actifs, nous organisons des hackathons,
+            Avec 14 membres actifs, nous organisons des hackathons,
             conférences et sessions d'entrainements, et développons des projets
             R&D pour que l'IA puisse contribuer à la vie du campus.
           </p>
