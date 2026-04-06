@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Linkedin, Loader2, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Instagram, Linkedin, Loader2, Mail, MapPin } from "lucide-react";
 import { toast } from "@/components/ui/sonner";
 
 const glassInputStyle = {
@@ -20,6 +20,7 @@ const glassInputFocusStyle = {
 
 const CONTACT_EMAIL = "contact@centralelyon-ia.fr";
 const LINKEDIN_HREF = "https://www.linkedin.com/company/centrale-lyon-ia/";
+const INSTAGRAM_HREF = "https://www.instagram.com/centrale_lyon_ia/";
 const VENUE_LABEL = "École Centrale de Lyon, Écully";
 const MAPS_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(VENUE_LABEL)}`;
 
@@ -68,7 +69,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-8 md:px-16 mt-24">
+    <section
+      id="contact"
+      className="relative min-h-screen w-full box-border py-24 px-8 md:px-16 flex flex-col justify-center"
+    >
       <p className="text-[whitesmoke] text-xs font-medium tracking-[0.2em] uppercase mb-6">Contact</p>
       <div className="grid md:grid-cols-2 gap-16">
         <div>
@@ -88,6 +92,15 @@ const ContactSection = () => {
             >
               <Linkedin className="w-5 h-5 text-[whitesmoke] shrink-0" aria-hidden />
               <span>Centrale Lyon IA sur LinkedIn</span>
+            </a>
+            <a
+              href={INSTAGRAM_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={contactRowLinkClass}
+            >
+              <Instagram className="w-5 h-5 text-[whitesmoke] shrink-0" aria-hidden />
+              <span>Centrale Lyon IA sur Instagram</span>
             </a>
             <a href={MAPS_HREF} target="_blank" rel="noopener noreferrer" className={contactRowLinkClass}>
               <MapPin className="w-5 h-5 text-[whitesmoke] shrink-0" aria-hidden />

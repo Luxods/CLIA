@@ -8,7 +8,6 @@ import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import NewsletterSection from "@/components/NewsletterSection";
 import HashScrollEffect from "@/components/HashScrollEffect";
 
 const Index = () => {
@@ -20,15 +19,14 @@ const Index = () => {
       <HeroSection />
       <HackathonSection />
       <PartnersSection />
-      <div className="bg-white">
+      <div className="bg-white" data-nav-bg="light">
         <AboutSection />
       </div>
       <ProjectsSection />
-      <div className="bg-white">
+      <div className="bg-white" data-nav-bg="light">
         <TeamSection />
       </div>
       <ContactSection />
-      <NewsletterSection />
       <Footer />
     </div>
   );

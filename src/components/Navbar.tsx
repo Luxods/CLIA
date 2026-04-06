@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { ChevronRight, GraduationCap } from "lucide-react";
-import logoCLIA from "@/assets/logo/logoCLIA.jpg";
-import { useHomeLogoClick } from "@/hooks/use-home-logo-click";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { useNavUnderlayLight } from "@/hooks/use-nav-underlay-light";
 
 const navLinks: { label: string; to: string }[] = [
   { label: "Hackathon", to: "/#hackathon" },
@@ -13,14 +12,10 @@ const navLinks: { label: string; to: string }[] = [
 ];
 
 const Navbar = () => {
-  const onLogoClick = useHomeLogoClick();
+  const underlayLight = useNavUnderlayLight();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 pt-[20px] pb-3 md:pb-4">
-      <Link to="/" onClick={onLogoClick} className="flex items-center gap-2">
-        <img src={logoCLIA} alt="Centrale Lyon IA" className="h-16 w-auto rounded" />
-      </Link>
-
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-end px-8 md:px-16 pt-[20px] pb-3 md:pb-4">
       <div className="rounded-full px-6 md:px-9 py-4 hidden md:flex items-center gap-5 md:gap-6 absolute left-1/2 -translate-x-1/2"
         style={{
           background: 'rgba(20, 35, 60, 0.35)',
@@ -55,11 +50,20 @@ const Navbar = () => {
             <Link
               to="/espace-etudiant"
               className={cn(
-                "rounded-lg px-4 py-3 text-sm font-medium font-body flex items-center gap-2",
-                "border border-white/20 bg-white/[0.06] text-white backdrop-blur-sm",
-                "transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out",
-                "hover:bg-white/12 hover:border-white/35 hover:shadow-md hover:shadow-black/20",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+                "rounded-lg px-4 py-3 text-sm font-medium font-body flex items-center gap-2 backdrop-blur-sm",
+                "transition-[background-color,border-color,box-shadow,transform,color] duration-300 ease-out",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                underlayLight
+                  ? cn(
+                      "border border-slate-800/20 bg-slate-900/[0.05] text-slate-800",
+                      "hover:bg-slate-900/[0.09] hover:border-slate-800/32 hover:shadow-md hover:shadow-black/10",
+                      "focus-visible:ring-slate-800/35 focus-visible:ring-offset-white",
+                    )
+                  : cn(
+                      "border border-white/20 bg-white/[0.06] text-white",
+                      "hover:bg-white/12 hover:border-white/35 hover:shadow-md hover:shadow-black/20",
+                      "focus-visible:ring-white/40 focus-visible:ring-offset-transparent",
+                    ),
               )}
             >
               <GraduationCap className="h-5 w-5 shrink-0 opacity-95" strokeWidth={2} aria-hidden />

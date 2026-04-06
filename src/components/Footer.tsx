@@ -58,10 +58,21 @@ const Footer = () => {
               <span className="text-white text-sm font-semibold tracking-widest uppercase mb-1">
                 Réseaux Sociaux
               </span>
-              {["LinkedIn", "Instagram"].map((item) => (
+              {[
+                {
+                  label: "LinkedIn",
+                  href: "https://www.linkedin.com/company/centrale-lyon-ia/",
+                },
+                {
+                  label: "Instagram",
+                  href: "https://www.instagram.com/centrale_lyon_ia/",
+                },
+              ].map(({ label, href }) => (
                 <a
-                  key={item}
-                  href="#"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm transition-colors duration-200"
                   style={{ color: "rgba(200, 210, 225, 0.55)" }}
                   onMouseEnter={(e) =>
@@ -71,7 +82,7 @@ const Footer = () => {
                     ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(200, 210, 225, 0.55)")
                   }
                 >
-                  {item}
+                  {label}
                 </a>
               ))}
             </div>

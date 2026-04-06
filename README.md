@@ -1,5 +1,5 @@
 Pour lancer le site:
 ```
 npm install
-npm run dev
+npm run dev:full
 ```

@@ -1,16 +1,26 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import logoCLIA from "@/assets/logo/logoCLIA.jpg";
+import { useHomeLogoClick } from "@/hooks/use-home-logo-click";
 
 const HeroSection = () => {
+  const onLogoClick = useHomeLogoClick();
+
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
+      <div className="absolute top-0 left-0 z-[60] px-8 md:px-16 pt-[20px]">
+        <Link to="/" onClick={onLogoClick} className="inline-flex items-center">
+          <img src={logoCLIA} alt="Centrale Lyon IA" className="h-16 w-auto rounded" />
+        </Link>
+      </div>
+
       <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 pt-32">
         <h1
           className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] max-w-4xl animate-fade-in-up text-white"
         >
-          Un club centralien
+          Entreprendre
           <br />
-          qui construit
+          et construire
           <br />
           avec l&apos;IA.
         </h1>
