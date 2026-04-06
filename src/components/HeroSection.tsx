@@ -8,7 +8,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      <div className="absolute top-0 left-0 z-[60] px-8 md:px-16 pt-[20px]">
+      <div className="absolute top-0 left-0 z-[60] flex min-h-[76px] items-center px-8 md:min-h-[86px] md:px-16">
         <Link to="/" onClick={onLogoClick} className="inline-flex items-center">
           <img src={logoCLIA} alt="Centrale Lyon IA" className="h-16 w-auto rounded" />
         </Link>
