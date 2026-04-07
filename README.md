@@ -2,11 +2,10 @@
   <img src="./src/assets/logo/logoCLIA.jpg" alt="Centrale Lyon IA" width="120" />
 </p>
 
-<h1 align="center">Centrale Lyon IA — Site du Club Intelligence Artificielle</h1>
+<h1 align="center">Centrale Lyon IA — Site de l'asso</h1>
 
 <p align="center">
-  Site vitrine du Club Intelligence Artificielle de l’École Centrale de Lyon : hackathon, projets, équipe et contact.<br/>
-  Une vitrine moderne pour présenter nos actions et rejoindre la communauté.
+  Site vitrine moderne du Club Intelligence Artificielle de l’École Centrale de Lyon : hackathon, projets, équipe et contact.<br/>
 </p>
 
 <p align="center">
