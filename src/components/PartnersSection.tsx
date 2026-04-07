@@ -2,17 +2,14 @@ import logoGE from "@/assets/logo/logo-ge-healthcare-segmented.png";
 import logoMistral from "@/assets/logo/logo-mistral.png";
 import logoLovable from "@/assets/logo/logo-lovable.png";
 import logoCLC from "@/assets/logo/logo-clc-segmented.png";
-import { PulseHebergLogo } from "@/components/PulseHebergLogo";
-import type { ComponentType } from "react";
+import logoPulseHeberg from "@/assets/logo/logo-pulseheberg.svg";
 
-type Partner =
-  | { name: string; url: string; logo: string; className: string }
-  | { name: string; url: string; Logo: ComponentType<{ className?: string }> };
+type Partner = { name: string; url: string; logo: string; className: string };
 
 const partners: Partner[] = [
   { name: "GE HealthCare", logo: logoGE, url: "https://www.gehealthcare.com/", className: "max-h-10 md:max-h-12" },
   { name: "Mistral AI", logo: logoMistral, url: "https://mistral.ai/", className: "max-h-6 md:max-h-7" },
-  { name: "PulseHeberg", url: "https://pulseheberg.com/", Logo: PulseHebergLogo },
+  { name: "PulseHeberg", logo: logoPulseHeberg, url: "https://pulseheberg.com/", className: "max-h-8 md:max-h-9 max-w-full" },
   { name: "Lovable", logo: logoLovable, url: "https://lovable.dev/", className: "max-h-6 md:max-h-7" },
   { name: "Centrale Lyon Conseil", logo: logoCLC, url: "https://www.centralelyonconseil.fr/", className: "max-h-12 md:max-h-16" },
 ];
@@ -34,16 +31,12 @@ const PartnersSection = () => {
             rel="noopener noreferrer"
             className="glass-card rounded-xl h-32 md:h-40 flex items-center justify-center p-6 hover:scale-105 transition-transform"
           >
-            {"logo" in partner ? (
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                loading="lazy"
-                className={`${partner.className} w-auto object-contain`}
-              />
-            ) : (
-              <partner.Logo />
-            )}
+            <img
+              src={partner.logo}
+              alt={partner.name}
+              loading="lazy"
+              className={`${partner.className} w-auto object-contain`}
+            />
           </a>
         ))}
       </div>
