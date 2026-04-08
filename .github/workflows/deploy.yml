@@ -118,8 +118,13 @@ jobs:
             sudo systemctl daemon-reload
             sudo systemctl enable clia
             sudo systemctl restart clia
-            sleep 2
-            sudo systemctl is-active --quiet clia
+            sleep 3
+            if ! sudo systemctl is-active --quiet clia; then
+              echo "clia service is not active after restart."
+              sudo systemctl status clia --no-pager -l || true
+              sudo journalctl -u clia -n 120 --no-pager || true
+              exit 1
+            fi
 
       - name: Clean Apache temp dir
         uses: appleboy/ssh-action@v1.2.5
