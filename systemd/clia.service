@@ -8,9 +8,12 @@ WorkingDirectory=/opt/clia
 Environment=NODE_ENV=production
 Environment=HOST=127.0.0.1
 Environment=PORT=8050
+ExecStartPre=/bin/sh -c 'fuser -k 8050/tcp 2>/dev/null || true'
 ExecStart=/usr/bin/node /opt/clia/server/index.mjs
 Restart=on-failure
-RestartSec=5
+RestartSec=10
+TimeoutStopSec=15
+KillMode=control-group
 
 [Install]
 WantedBy=multi-user.target
