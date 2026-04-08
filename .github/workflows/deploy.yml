@@ -1,0 +1,202 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-clia-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      DOMAIN: centralelyon-ia.com
+      APP_PORT: "8050"
+      DEPLOY_DIR: /opt/clia
+      APACHE_STAGING_DIR: /tmp/clia-apache-config
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create .env for production
+        run: |
+          cat > .env << ENVFILE
+          NODE_ENV=production
+          HOST=127.0.0.1
+          PORT=${{ env.APP_PORT }}
+          RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+          CONTACT_FROM_EMAIL=${{ secrets.CONTACT_FROM_EMAIL }}
+          CONTACT_NOTIFY_EMAILS=${{ secrets.CONTACT_NOTIFY_EMAILS }}
+          ENVFILE
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package release artifact
+        run: |
+          rm -rf .deploy-artifact
+          mkdir -p .deploy-artifact
+          cp -r dist server package.json package-lock.json .deploy-artifact/
+
+      - name: Ensure deploy directory on VPS
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          timeout: 2m
+          command_timeout: 5m
+          script: |
+            sudo -n mkdir -p "${{ env.DEPLOY_DIR }}"
+            sudo -n chown -R "$USER:$USER" "${{ env.DEPLOY_DIR }}"
+
+      - name: Deploy application files
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: ".deploy-artifact/"
+          target: "${{ env.DEPLOY_DIR }}"
+          strip_components: 1
+          rm: true
+
+      - name: Deploy .env to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: ".env"
+          target: "${{ env.DEPLOY_DIR }}"
+          strip_components: 0
+
+      - name: Install production dependencies on VPS
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          command_timeout: 10m
+          script: |
+            set -e
+            cd "${{ env.DEPLOY_DIR }}"
+            npm ci --omit=dev
+
+      - name: Deploy systemd unit
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "systemd/clia.service"
+          target: "/tmp"
+          strip_components: 1
+
+      - name: Install systemd unit and restart app
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          command_timeout: 5m
+          script: |
+            set -e
+            sudo cp /tmp/clia.service /etc/systemd/system/
+            sudo systemctl daemon-reload
+            sudo systemctl enable clia
+            sudo systemctl restart clia
+            sleep 2
+            sudo systemctl is-active --quiet clia
+
+      - name: Clean Apache temp dir
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: rm -rf "${{ env.APACHE_STAGING_DIR }}"
+
+      - name: Upload Apache configs
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "apache-config/*"
+          target: "${{ env.APACHE_STAGING_DIR }}"
+          strip_components: 1
+
+      - name: Apply Apache configuration
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          command_timeout: 5m
+          script: |
+            set -e
+            DOMAIN="${{ env.DOMAIN }}"
+            STAGING="${{ env.APACHE_STAGING_DIR }}"
+            BACKUP_DIR="/etc/apache2/sites-available/backup-clia-$(date +%Y%m%d-%H%M%S)"
+            sudo mkdir -p "$BACKUP_DIR"
+            for f in "${DOMAIN}.conf" "${DOMAIN}-le-ssl.conf"; do
+              if [ -f "/etc/apache2/sites-available/$f" ]; then
+                sudo cp "/etc/apache2/sites-available/$f" "$BACKUP_DIR/" || true
+              fi
+            done
+            sudo cp "$STAGING/${DOMAIN}.conf" /etc/apache2/sites-available/
+            sudo cp "$STAGING/${DOMAIN}-le-ssl.conf" /etc/apache2/sites-available/
+            sudo chown root:root "/etc/apache2/sites-available/${DOMAIN}.conf" "/etc/apache2/sites-available/${DOMAIN}-le-ssl.conf"
+            sudo chmod 644 "/etc/apache2/sites-available/${DOMAIN}.conf" "/etc/apache2/sites-available/${DOMAIN}-le-ssl.conf"
+            sudo a2ensite "${DOMAIN}.conf"
+            sudo a2ensite "${DOMAIN}-le-ssl.conf"
+            sudo a2enmod ssl rewrite proxy proxy_http headers 2>/dev/null || true
+            CONFIG_TEST_OUTPUT=$(sudo apache2ctl configtest 2>&1)
+            CONFIG_TEST_EXIT=$?
+            echo "$CONFIG_TEST_OUTPUT"
+            if [ $CONFIG_TEST_EXIT -ne 0 ]; then
+              echo "Apache config test failed, restoring backups if any..."
+              for f in "${DOMAIN}.conf" "${DOMAIN}-le-ssl.conf"; do
+                [ -f "$BACKUP_DIR/$f" ] && sudo cp "$BACKUP_DIR/$f" /etc/apache2/sites-available/
+              done
+              exit 1
+            fi
+            if sudo systemctl is-active --quiet apache2; then
+              sudo systemctl reload apache2
+            else
+              sudo systemctl start apache2
+            fi
+            rm -rf "$STAGING"
+
+      - name: Verify HTTP response
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            PORT="${{ env.APP_PORT }}"
+            for i in 1 2 3 4 5 6 7 8 9 10; do
+              if curl -sf -o /dev/null "http://127.0.0.1:${PORT}/"; then
+                echo "OK: CLIA static server responds on :${PORT}"
+                exit 0
+              fi
+              sleep 2
+            done
+            echo "Health check failed"
+            sudo journalctl -u clia -n 80 --no-pager || true
+            exit 1
