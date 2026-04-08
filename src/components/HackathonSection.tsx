@@ -2,11 +2,11 @@ import { ExternalLink, Images, Rocket } from "lucide-react";
 import wideSrc from "@/assets/01.jpg";
 import accentSrc from "@/assets/10.jpg";
 
-/** Billetterie, Luma, réseau social, article… (à adapter) */
-const HACKATHON_MORE_INFO_URL = "#";
+/** Lien site Unboxed */
+const HACKATHON_MORE_INFO_URL = "https://unboxedhack.com/";
 
-/** Page galerie (placeholder) */
-const HACKATHON_GALLERY_URL = "#";
+/** Lien page galerie du site Unboxed */
+const HACKATHON_GALLERY_URL = "https://unboxedhack.com/galerie/";
 
 const HackathonSection = () => {
 
@@ -44,6 +44,8 @@ const HackathonSection = () => {
             </a>
             <a
               href={HACKATHON_GALLERY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/85 transition-colors group"
             >
               <Images className="w-4 h-4 opacity-80 shrink-0" aria-hidden />
