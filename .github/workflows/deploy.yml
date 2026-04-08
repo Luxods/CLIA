@@ -114,11 +114,20 @@ jobs:
           command_timeout: 5m
           script: |
             set -e
+            PORT="${{ env.APP_PORT }}"
+            sudo systemctl stop clia || true
+            if command -v fuser >/dev/null 2>&1; then
+              sudo fuser -k "${PORT}/tcp" || true
+            fi
             sudo cp /tmp/clia.service /etc/systemd/system/
             sudo systemctl daemon-reload
             sudo systemctl enable clia
             sudo systemctl restart clia
             sleep 3
+            if sudo ss -ltn "sport = :${PORT}" | tail -n +2 | grep -q .; then
+              echo "Port ${PORT} is still occupied after restart attempt."
+              sudo ss -ltnp "sport = :${PORT}" || true
+            fi
             if ! sudo systemctl is-active --quiet clia; then
               echo "clia service is not active after restart."
               sudo systemctl status clia --no-pager -l || true
