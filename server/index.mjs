@@ -12,6 +12,7 @@ const distDir = path.resolve(__dirname, "..", "dist");
 /** Mode `node server/index.mjs dev` : uniquement l’API (port 8787), pour Vite en local. */
 const apiOnly = process.argv[2] === "dev";
 const PORT = Number(process.env.PORT) || (apiOnly ? 8787 : 3000);
+const HOST = process.env.HOST || "0.0.0.0";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
@@ -225,10 +226,10 @@ const server = http.createServer(async (req, res) => {
   serveStatic(req, res);
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
   if (apiOnly) {
     console.log(`[contact] API seule sur http://127.0.0.1:${PORT}`);
   } else {
-    console.log(`[site] http://127.0.0.1:${PORT} (dossier dist/)`);
+    console.log(`[site] http://${HOST}:${PORT} (dossier dist/)`);
   }
 });

@@ -1,0 +1,16 @@
+[Unit]
+Description=Centrale Lyon IA site (Vite + Node server)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/clia
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=8050
+ExecStart=/usr/bin/node /opt/clia/server/index.mjs
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
