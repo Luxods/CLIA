@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import EspaceEtudiant from "./pages/EspaceEtudiant.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import CustomCursor from "./components/CustomCursor.tsx";
 
 const queryClient = new QueryClient();
 

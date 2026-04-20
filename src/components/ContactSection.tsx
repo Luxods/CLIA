@@ -74,7 +74,7 @@ const ContactSection = () => {
       className="relative min-h-screen w-full box-border py-24 px-8 md:px-16 flex flex-col justify-center"
     >
       <p className="text-[whitesmoke] text-xs font-medium tracking-[0.2em] uppercase mb-6">Contact</p>
-      <div className="grid md:grid-cols-2 gap-16">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-16">
         <div>
           <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight mb-8">
             Envie de construire quelque chose avec nous ?
