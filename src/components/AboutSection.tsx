@@ -5,19 +5,18 @@ const AboutSection = () => {
   return (
     <section
       id="à-propos"
-      className="scroll-mt-28 pt-24 px-8 md:px-16 mt-24 flex flex-col justify-center"
-      style={{ minHeight: "110vh" }}
+      className="scroll-mt-28 pt-24 px-8 md:px-16 mt-24 flex flex-col justify-center md:min-h-[110vh]"
       aria-labelledby="about-heading"
     >
       <p className="text-blue-800 text-xs font-medium tracking-[0.2em] uppercase mb-6">À Propos</p>
-      <div className="grid md:grid-cols-2 gap-16 items-start">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
         <h2
           id="about-heading"
           className="font-display text-4xl md:text-5xl font-bold leading-tight text-blue-950"
         >
           Une communauté passionnée par l'intelligence artificielle.
         </h2>
-        <div className="space-y-6 text-slate-700 leading-relaxed">
+        <div className="space-y-6 pb-10 text-slate-700 leading-relaxed md:pb-0">
           <p>
             Fondé en 2025, Centrale Lyon IA rassemble les étudiants curieux et ambitieux de l'école
             qui souhaitent participer aux développements de projets innovants et d'évènements autour de l'IA.

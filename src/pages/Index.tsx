@@ -12,7 +12,7 @@ import HashScrollEffect from "@/components/HashScrollEffect";
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-hidden">
       <HashScrollEffect />
       <AnimatedBackground />
       <Navbar />
