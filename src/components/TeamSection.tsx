@@ -1,6 +1,41 @@
 import { Linkedin } from "lucide-react";
 import photoPlaceholder from "@/assets/equipe/photo-exemple.jpg";
 
+const teamPhotoFiles = import.meta.glob<string>("/src/assets/equipe/*.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+});
+
+const teamPhotos = Object.fromEntries(
+  Object.entries(teamPhotoFiles).map(([path, photo]) => [
+    path.split("/").pop()?.replace(/\.[^.]+$/, ""),
+    photo,
+  ]),
+);
+
+const getPhotoKey = (firstName: string, lastName: string) =>
+  `${firstName}-${lastName}`
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const getMemberPhoto = (firstName: string, lastName: string) => {
+  const key = getPhotoKey(firstName, lastName);
+  const directMatch = teamPhotos[key];
+
+  if (directMatch) return directMatch;
+
+  const fallbackKey = `${firstName.toLowerCase()}-${lastName.toLowerCase()}`
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return teamPhotos[fallbackKey] ?? photoPlaceholder;
+};
+
 type TeamMember = {
   firstName: string;
   lastName: string;
@@ -9,10 +44,9 @@ type TeamMember = {
 };
 
 const teamMembers: TeamMember[] = [
-  { firstName: "Alexandre", lastName: "Ansart", role: "Président", linkedIn: "https://www.linkedin.com/in/alexandre-ansart/" },
-  { firstName: "Florian", lastName: "Dougnon", role: "Vice-président", linkedIn: "https://www.linkedin.com/in/florian-dougnon-greder-326421306/" },
-  { firstName: "Bastian", lastName: "Paoli", role: "Trésorier", linkedIn: "https://www.linkedin.com/in/bastian-paoli-99b75b321/" },
-  { firstName: "Louis", lastName: "Pagès", role: "R&D", linkedIn: "https://www.linkedin.com/in/louis-pag%C3%A8s-85b100394/" },
+  { firstName: "Florian", lastName: "Dougnon", role: "Président", linkedIn: "https://www.linkedin.com/in/florian-dougnon-greder-326421306/" },
+  { firstName: "Bastian", lastName: "Paoli", role: "Vice-Trésorier", linkedIn: "https://www.linkedin.com/in/bastian-paoli-99b75b321/" },
+  { firstName: "Louis", lastName: "Pagès", role: "Trésorier / R&D", linkedIn: "https://www.linkedin.com/in/louis-pag%C3%A8s-85b100394/" },
   { firstName: "Balthazar", lastName: "Buclon", role: "R&D", linkedIn: "https://www.linkedin.com/in/balthazar-buclon/" },
   { firstName: "Enzo", lastName: "Ducros", role: "Hackathon", linkedIn: "https://www.linkedin.com/in/enzo-ducros-69994632b/" },
   { firstName: "Théo", lastName: "Monferrini", role: "Conférences", linkedIn: "https://www.linkedin.com/in/th%C3%A9o-monferrini-7ba57a2a6/" },
@@ -49,7 +83,7 @@ const TeamSection = () => {
               aria-label={`LinkedIn de ${member.firstName} ${member.lastName}`}
             >
               <img
-                src={photoPlaceholder}
+                src={getMemberPhoto(member.firstName, member.lastName)}
                 alt=""
                 className="h-full w-full object-cover grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0"
               />
