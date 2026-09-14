@@ -44,19 +44,17 @@ type TeamMember = {
 };
 
 const teamMembers: TeamMember[] = [
-  { firstName: "Florian", lastName: "Dougnon", role: "Président", linkedIn: "https://www.linkedin.com/in/florian-dougnon-greder-326421306/" },
-  { firstName: "Bastian", lastName: "Paoli", role: "Vice-Trésorier", linkedIn: "https://www.linkedin.com/in/bastian-paoli-99b75b321/" },
+    { firstName: "Bastian", lastName: "Paoli", role: "Président", linkedIn: "https://www.linkedin.com/in/bastian-paoli-99b75b321/" },
+  { firstName: "Florian", lastName: "Dougnon", role: "Vice-Président", linkedIn: "https://www.linkedin.com/in/florian-dougnon-greder-326421306/" },
   { firstName: "Louis", lastName: "Pagès", role: "Trésorier / R&D", linkedIn: "https://www.linkedin.com/in/louis-pag%C3%A8s-85b100394/" },
   { firstName: "Balthazar", lastName: "Buclon", role: "R&D", linkedIn: "https://www.linkedin.com/in/balthazar-buclon/" },
   { firstName: "Enzo", lastName: "Ducros", role: "Hackathon", linkedIn: "https://www.linkedin.com/in/enzo-ducros-69994632b/" },
   { firstName: "Théo", lastName: "Monferrini", role: "Conférences", linkedIn: "https://www.linkedin.com/in/th%C3%A9o-monferrini-7ba57a2a6/" },
   { firstName: "Alexandre", lastName: "Thiébaut-Georges", role: "Stages", linkedIn: "https://www.linkedin.com/in/alexandre-thi%C3%A9baut-george/" },
-  { firstName: "Romain", lastName: "Joly", role: "Stages", linkedIn: "https://www.linkedin.com/in/romain-joly-687126381/" },
   { firstName: "Timéo", lastName: "Larrède", role: "Kaggle", linkedIn: "https://www.linkedin.com/in/tim%C3%A9o-larr%C3%A8de-b089b4376/" },
   { firstName: "Martin", lastName: "Mahérault", role: "R&D", linkedIn: "https://www.linkedin.com/in/martin-mah%C3%A9rault-8081793b3/" },
   { firstName: "Nolann", lastName: "Vignard", role: "Communication", linkedIn: "https://www.linkedin.com/in/nolann-vignard-8789a33a5/" },
   { firstName: "Ilyess", lastName: "Mejri", role: "R&D", linkedIn: "https://www.linkedin.com/" },
-  { firstName: "Naël", lastName: "El Hamidi", role: "Communication", linkedIn: "https://www.linkedin.com/in/na%C3%ABl-el-hamidi-5a472229a/" },
 ];
 
 const TeamSection = () => {
