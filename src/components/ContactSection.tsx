@@ -18,7 +18,7 @@ const glassInputFocusStyle = {
   border: "1px solid rgba(255,255,255,0.7)",
 };
 
-const CONTACT_EMAIL = "contact@centralelyon-ia.fr";
+const CONTACT_EMAIL = "centrale.lyon.ia@gmail.com";
 const LINKEDIN_HREF = "https://www.linkedin.com/company/centrale-lyon-ia/";
 const INSTAGRAM_HREF = "https://www.instagram.com/centrale_lyon_ia/";
 const VENUE_LABEL = "École Centrale de Lyon, Écully";
